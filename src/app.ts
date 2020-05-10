@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { Router } from './routes/router';
+import { Router } from './routes/core/router';
 import { Kernel } from './middlewares/kernel';
 import { environment } from './environment/dev';
 

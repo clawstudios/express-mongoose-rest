@@ -45,10 +45,12 @@ The concepts we are trying to include in this architecture are the following:
 - Schemas (Models)
 
 ## Routes
-To isolate routes addition in the app.ts file, we created a basic **ROUTER** located in the `/src/routes/router.ts` file. 
+To isolate routes addition in the app.ts file, we created a basic **ROUTER** located in the `/src/routes/core/router.ts` file in where we add the array of routes exported in the files located in the `/src/routes/` folder. 
 *If you want, go check it out and suggest more functionalities or better ways to implement it*
 
-Routes are readed from an array located in the `/src/routes/router.ts` file. Each route is an object formed with the following properties:
+To create a new group of routes, copy the `/src/routes/user.ts` file, you will see that you need to export an array of routes.
+
+Each route is an object formed with the following properties:
 - **url:** A string with the route path.
 - **middlewares:** An array of IMiddleware Classes.
 - **method:** An *HTTP_METHODT* enum value for the request method.
@@ -64,6 +66,15 @@ export const ROUTES:Array<any>  = [
     },
 ];
 ```
+
+To add correctly the new group of routes, you need to import the routes in the `/src/routes/core/router.ts` file
+
+```ts
+static ROUTES:Array<Array<Route>> = [
+    USER_ROUTES
+];
+```
+
 
 ## Middlewares
 Used to handle the request before executing the controller. Often used to prevent or grant access to certain method of the API.
